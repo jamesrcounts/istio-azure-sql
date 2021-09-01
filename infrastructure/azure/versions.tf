@@ -1,6 +1,8 @@
 terraform {
   required_version = ">= 1"
 
+  backend "azurerm" {  }
+
   required_providers {
     azuread = {
       source  = "hashicorp/azuread"
@@ -17,7 +19,7 @@ terraform {
   }
 }
 
-provider azurerm {
+provider "azurerm" {
   features {
     key_vault {
       recover_soft_deleted_key_vaults = true

@@ -1,9 +1,4 @@
 locals {
-  project = "tfaz"
-
-  tags = {
-    project = local.project
-  }
+  env_instance_id = module.configuration.imports["appenv-instance-id"]
+  //subnets         = jsondecode(module.configuration.imports["subnets"])
 }
-
-resource "random_pet" "fido" {}
