@@ -33,5 +33,6 @@ validate:
 plan: config init fmt validate
 	terraform plan -out plan.tfplan
 
-apply: fmt init validate
-	terraform apply
+apply: 
+	terraform apply plan.tfplan
+	rm plan.tfplan
