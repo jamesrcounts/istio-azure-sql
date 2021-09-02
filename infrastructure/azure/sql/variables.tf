@@ -29,3 +29,9 @@ variable "connection_policy" {
   description = "(Optional) The connection policy the server will use. Possible values are Default, Proxy, and Redirect. Defaults to Default."
   type        = string
 }
+
+variable "public_network_access_enabled" {
+  default     = true
+  description = "(Optional) Whether public network access is allowed for this server. Defaults to true."
+  type        = bool
+}

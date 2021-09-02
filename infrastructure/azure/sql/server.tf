@@ -1,13 +1,14 @@
 
 resource "azurerm_mssql_server" "server" {
-  name                         = local.server_name
-  resource_group_name          = var.resource_group.name
-  location                     = var.resource_group.location
-  version                      = "12.0"
-  administrator_login          = "missadministrator"
-  administrator_login_password = random_password.admin_password.result
-  minimum_tls_version          = "1.2"
-  tags                         = var.resource_group.tags
+  administrator_login           = "missadministrator"
+  administrator_login_password  = random_password.admin_password.result
+  location                      = var.resource_group.location
+  minimum_tls_version           = "1.2"
+  name                          = local.server_name
+  public_network_access_enabled = var.public_network_access_enabled
+  resource_group_name           = var.resource_group.name
+  tags                          = var.resource_group.tags
+  version                       = "12.0"
 
   azuread_administrator {
     login_username = "AzureAD Admin"
