@@ -1,7 +1,7 @@
-
 resource "azurerm_mssql_server" "server" {
   administrator_login           = "missadministrator"
   administrator_login_password  = random_password.admin_password.result
+  connection_policy             = var.connection_policy
   location                      = var.resource_group.location
   minimum_tls_version           = "1.2"
   name                          = local.server_name
