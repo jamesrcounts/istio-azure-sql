@@ -17,3 +17,15 @@ variable "primary_blob_endpoint" {
   description = " (Required) The blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all extended auditing logs."
   type        = string
 }
+
+variable "resource_suffix" {
+  default     = ""
+  description = "(Optional) This module will append this value to the resource name."
+  type        = string
+}
+
+variable "connection_policy" {
+  default     = "Default"
+  description = "(Optional) The connection policy the server will use. Possible values are Default, Proxy, and Redirect. Defaults to Default."
+  type        = string
+}
