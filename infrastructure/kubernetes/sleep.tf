@@ -1,5 +1,14 @@
+locals {
+  sleep_ns = merge(
+    kubernetes_namespace.ns,
+    {
+      legacy = kubernetes_namespace.legacy
+    }
+  )
+}
+
 resource "kubernetes_service_account" "sleep" {
-  for_each = kubernetes_namespace.ns
+  for_each = local.sleep_ns
 
   metadata {
     name      = "sleep"
@@ -8,7 +17,7 @@ resource "kubernetes_service_account" "sleep" {
 }
 
 resource "kubernetes_service" "sleep" {
-  for_each = kubernetes_namespace.ns
+  for_each = local.sleep_ns
 
   metadata {
     name      = "sleep"
@@ -37,7 +46,7 @@ resource "kubernetes_deployment" "sleep" {
     module.istio
   ]
 
-  for_each = kubernetes_namespace.ns
+  for_each = local.sleep_ns
 
   metadata {
     name      = "sleep"
