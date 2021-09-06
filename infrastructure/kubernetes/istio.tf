@@ -1,0 +1,3 @@
+module "istio" {
+  source = "./istio"
+}
