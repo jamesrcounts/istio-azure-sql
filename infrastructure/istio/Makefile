@@ -1,14 +1,14 @@
 default: plan
 
 backend_instance_id := real-macaque
-state_prefix := kubernetes
+state_prefix := istio
 
 login:
 	az login
 	az account set --subscription "Jim Counts (Personal)"
 	az account show --output table
 
-backend_config:
+azurerm.backend.tfvars:
 	az keyvault secret download \
 		--name azurerm-backend-tfvars \
 		--vault-name kv-$(backend_instance_id) \
@@ -21,7 +21,7 @@ backend_config:
 fmt:
 	terraform fmt -recursive
 
-init:
+init: azurerm.backend.tfvars
 	terraform init --upgrade -backend-config azurerm.backend.tfvars
 	terraform -v
 	terraform providers
