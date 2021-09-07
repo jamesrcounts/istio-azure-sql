@@ -34,10 +34,6 @@ resource "kubernetes_service" "httpbin" {
 }
 
 resource "kubernetes_deployment" "httpbin" {
-  depends_on = [
-    module.istio
-  ]
-
   for_each = kubernetes_namespace.ns
 
   metadata {

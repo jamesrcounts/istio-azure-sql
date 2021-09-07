@@ -1,8 +1,4 @@
 resource "kubernetes_manifest" "allow_nothing_policy" {
-  depends_on = [
-    module.istio
-  ]
-
   for_each = kubernetes_namespace.ns
 
   manifest = yamldecode(<<EOF

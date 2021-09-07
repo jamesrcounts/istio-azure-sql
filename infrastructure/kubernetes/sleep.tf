@@ -42,10 +42,6 @@ resource "kubernetes_service" "sleep" {
 }
 
 resource "kubernetes_deployment" "sleep" {
-  depends_on = [
-    module.istio
-  ]
-
   for_each = local.sleep_ns
 
   metadata {
