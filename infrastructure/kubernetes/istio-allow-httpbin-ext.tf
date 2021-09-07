@@ -17,3 +17,23 @@ spec:
 EOF
   )
 }
+
+resource "kubernetes_manifest" "config_httpbin_ext" {
+  manifest = yamldecode(<<EOF
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: httpbin-ext
+  namespace: ${data.kubernetes_namespace.istio_system.metadata.0.name}
+spec:
+  hosts:
+    - httpbin.org
+  http:
+  - timeout: 3s
+    route:
+      - destination:
+          host: httpbin.org
+        weight: 100
+EOF
+  )
+}

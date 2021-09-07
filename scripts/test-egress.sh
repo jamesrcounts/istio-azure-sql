@@ -7,3 +7,4 @@ kubectl exec "$SOURCE_POD" -n ${NS} -c sleep -- curl -sSI https://www.google.com
 kubectl exec "$SOURCE_POD" -n ${NS} -c sleep -- curl -sI https://edition.cnn.com | grep "HTTP/"
 kubectl exec "$SOURCE_POD" -n ${NS} -c sleep -- curl -sS http://httpbin.org/headers
 kubectl logs "$SOURCE_POD" -n ${NS} -c istio-proxy | tail
+kubectl exec "$SOURCE_POD" -n ${NS} -c sleep -- time curl -o /dev/null -sS -w "%{http_code}\n" http://httpbin.org/delay/5
