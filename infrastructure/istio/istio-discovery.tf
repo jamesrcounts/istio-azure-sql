@@ -11,4 +11,9 @@ resource "helm_release" "istio_discovery" {
     name  = "meshConfig.accessLogFile"
     value = "/dev/stdout"
   }
+
+  set {
+    name  = "meshConfig.outboundTrafficPolicy.mode"
+    value = "REGISTRY_ONLY"
+  }
 }
