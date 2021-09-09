@@ -44,7 +44,8 @@
 		"ms-azuretools.vscode-azureterraform",
 		"ms-azuretools.vscode-docker",
 		"ms-vscode.azurecli",
-		"tyriar.sort-lines"
+		"tyriar.sort-lines",
+		"ms-dotnettools.csharp"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
