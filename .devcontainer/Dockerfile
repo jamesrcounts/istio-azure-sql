@@ -4,6 +4,9 @@ FROM mcr.microsoft.com/vscode/devcontainers/dotnet:0-${VARIANT}
 
 COPY library-scripts/*.sh /tmp/library-scripts/
 
+# Install kubectl and helm
+RUN bash /tmp/library-scripts/kubectl-helm-debian.sh
+
 # [Option] Install zsh
 ARG INSTALL_ZSH="true"
 # [Option] Upgrade OS packages to their latest versions
