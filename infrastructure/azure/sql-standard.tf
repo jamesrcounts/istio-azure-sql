@@ -6,10 +6,10 @@ module "sql_standard" {
   primary_blob_endpoint = azurerm_storage_account.audits.primary_blob_endpoint
 }
 
-resource "azurerm_sql_firewall_rule" "all_access" {
+resource "azurerm_sql_firewall_rule" "allow_aks" {
   name                = "allow-all"
   resource_group_name = data.azurerm_resource_group.main.name
   server_name         = module.sql_standard.server_name
-  start_ip_address    = "0.0.0.0"
-  end_ip_address      = "255.255.255.255"
+  start_ip_address    = module.aks.load_balancer_ip_address
+  end_ip_address      = module.aks.load_balancer_ip_address
 }
