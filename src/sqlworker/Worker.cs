@@ -36,11 +36,11 @@ namespace sqlworker
                     {
                         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-                        builder.ConnectionString = _configuration.GetConnectionString("std");
+                        builder.ConnectionString = _configuration.GetConnectionString(server);
 
                         using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                         {
-                            Console.WriteLine("\nQuery data example:");
+                            Console.WriteLine($"\nQuery data example ({server}):");
                             Console.WriteLine("=========================================\n");
 
                             connection.Open();
