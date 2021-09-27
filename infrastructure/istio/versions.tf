@@ -5,15 +5,15 @@ terraform {
 
   required_providers {
     kubernetes = {
-      source = "hashicorp/kubernetes"
+      source  = "hashicorp/kubernetes"
       version = "~> 2"
     }
-        helm = {
-      source = "hashicorp/helm"
+    helm = {
+      source  = "hashicorp/helm"
       version = "~> 2"
     }
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "~> 2"
     }
   }
