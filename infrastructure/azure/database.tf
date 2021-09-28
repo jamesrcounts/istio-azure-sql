@@ -9,7 +9,7 @@ locals {
 resource "azurerm_mssql_database" "db" {
   for_each = local.server
 
-  name           = "test-${each.key}"
+  name           = "db-${each.key}"
   server_id      = each.value.server_id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
