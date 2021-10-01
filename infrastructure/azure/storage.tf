@@ -32,3 +32,19 @@ resource "azurerm_storage_account" "audits" {
     virtual_network_subnet_ids = []
   }
 }
+
+resource "azurerm_storage_account" "evh_state" {
+  name                     = replace("sa-evh-${local.instance_id}", "-", "")
+  resource_group_name      = data.azurerm_resource_group.main.name
+  location                 = data.azurerm_resource_group.main.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+
+  tags = local.tags
+}
+
+resource "azurerm_storage_container" "evh" {
+  name                  = "evh"
+  storage_account_name  = azurerm_storage_account.evh_state.name
+  container_access_type = "private"
+}
