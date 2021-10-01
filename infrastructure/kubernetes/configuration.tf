@@ -6,5 +6,6 @@ module "configuration" {
   additional_imports = [
     "aks-cluster-name",
     "appenv-instance-id",
+    "evh-configuration",
   ]
 }
