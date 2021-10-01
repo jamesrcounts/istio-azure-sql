@@ -1,5 +1,10 @@
+locals {
+  evh_name   = "evh-${local.instance_id}"
+  evhns_name = "evhns-${local.instance_id}"
+}
+
 resource "azurerm_eventhub_namespace" "evhns" {
-  name                = "evhns-${local.instance_id}"
+  name                = local.evhns_name
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
   sku                 = "Standard"
@@ -9,7 +14,7 @@ resource "azurerm_eventhub_namespace" "evhns" {
 }
 
 resource "azurerm_eventhub" "evh" {
-  name                = "evh-${local.instance_id}"
+  name                = local.evh_name
   namespace_name      = azurerm_eventhub_namespace.evhns.name
   resource_group_name = data.azurerm_resource_group.main.name
   partition_count     = 2
@@ -22,6 +27,6 @@ resource "azurerm_eventhub_authorization_rule" "rw" {
   eventhub_name       = azurerm_eventhub.evh.name
   resource_group_name = data.azurerm_resource_group.main.name
   listen              = true
-  send                = false
+  send                = true
   manage              = false
 }
