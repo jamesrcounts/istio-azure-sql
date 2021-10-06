@@ -18,11 +18,17 @@ resource "helm_release" "fluent_bit" {
     value = <<EOF
 [INPUT]
     Name tail
-    Path /var/log/containers/httpbin*.log
+    Path /var/log/containers/*.log
     multiline.parser docker\, cri
     Tag kube.*
     Mem_Buf_Limit 5MB
     Skip_Long_Lines On
+
+[INPUT]
+    Name systemd
+    Tag host.*
+    Systemd_Filter _SYSTEMD_UNIT=kubelet.service
+    Read_From_Tail On
 EOF
   }
 
